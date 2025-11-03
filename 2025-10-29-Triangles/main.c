@@ -13,10 +13,24 @@ int isTriangle(int a, int b, int c){
 void usage(){
   int a,b,c;
   printf("Usage:\n");
-  printf("/a.out user\n");
-  printf("%s horizontal <filename>\n");
-  printf("%s vertical <filename>\n");
+  printf("./a.out user\n");
+  printf("./a.out horizontal <filename>\n");
+  printf("./a.out vertical <filename>\n");
   printf("Determines how many triangles exist\n");
+}
+int user(){
+  int a,b,c;
+  printf("Enter 3 nums\n");
+  if(scanf("%d %d %d", &a, &b, &c) != 3){
+    printf("INvalid inputs\n");
+    return;
+  }
+  if(isTriangle(a,b,c)){
+    printf("valid\n");
+  }
+  else{
+    printf("invalid\n");
+  }
 }
 int horizontal(char *fileName){
   FILE *fd = fopen(fileName,"r");
