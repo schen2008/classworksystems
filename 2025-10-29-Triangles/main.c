@@ -29,7 +29,7 @@ int user(){
     printf("valid\n");
   }
   else{
-    printf("invalid\n");
+    printf("invalid\n");    
   }
 }
 int horizontal(char *fileName){
