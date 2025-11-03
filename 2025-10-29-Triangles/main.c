@@ -10,8 +10,13 @@ int err(){
 int isTriangle(int a, int b, int c){
   return (a+b>c) && (a+c>b) && (b+c>a);
 }
-int main(int argc, char* argv[]){
-  return 0;
+void usage(){
+  int a,b,c;
+  printf("Usage:\n");
+  printf("/a.out user\n");
+  printf("%s horizontal <filename>\n");
+  printf("%s vertical <filename>\n");
+  printf("Determines how many triangles exist\n");
 }
 int horizontal(char *fileName){
   FILE *fd = fopen(fileName,"r");
@@ -23,11 +28,21 @@ int horizontal(char *fileName){
   int valid = 0;
   char buffer[64]; // no idea if this is big enough
   while(fgets(buffer, sizeof(buffer), fd) != NULL){
-    if(sscanf(fd, "%d %d %d", &a, &b, &c) == 3){
+    if(sscanf(buffer, "%d %d %d", &a, &b, &c) == 3){
       if(isTriangle(a,b,c)) valid++;
     }
   }
   fclose(fd);
   printf("%d Valid Triangles\n", valid);
   return valid;
+}
+
+int vertical(char *fileName){
+  return 0;
+}
+
+int main(int argc, char* argv[]){
+  if(argc < 2){
+      printf("")
+  }
 }
