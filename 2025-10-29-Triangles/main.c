@@ -23,14 +23,15 @@ int user(){
   printf("Enter 3 nums\n");
   if(scanf("%d %d %d", &a, &b, &c) != 3){
     printf("INvalid inputs\n");
-    return;
+    return 0;
   }
   if(isTriangle(a,b,c)){
     printf("valid\n");
   }
   else{
-    printf("invalid\n");    
+    printf("invalid\n");
   }
+  return 0;
 }
 int horizontal(char *fileName){
   FILE *fd = fopen(fileName,"r");
@@ -57,6 +58,10 @@ int vertical(char *fileName){
 
 int main(int argc, char* argv[]){
   if(argc < 2){
-      printf("")
+      usage();
+      return 1;
+  }
+  else if(strcmp(argv[1],"horizontal") == 0 && argc == 3){
+    horizontal(argv[2]);
   }
 }
