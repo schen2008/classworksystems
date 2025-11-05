@@ -53,7 +53,33 @@ int horizontal(char *fileName){
 }
 
 int vertical(char *fileName){
-  return 0;
+  FILE *fd = fopen(fileName,"r");
+  if(fd==NULL){
+    err();
+    return -1;
+  }
+  int nums[9];
+  int count = 0;
+  int valid = 0;
+  char buffer[64];
+  while(fgets(buffer, sizeof(buffer), fd)!= NULL){
+    int a,b,c;
+    if(sscanf(buffer, "%d %d %d", &a,&b,&c) == 3){
+      nums[count] = a;
+      nums[count+3] = b;
+      nums[count+6] = c;
+      count++;
+      if(count == 3){
+        if(isTriangle(nums[0],nums[1],nums[2])) valid++;
+        if(isTriangle(nums[3],nums[4],nums[5])) valid++;
+        if(isTriangle(nums[6],nums[7],nums[8])) valid++;
+        count = 0;
+      }
+    }
+  }
+  fclose(fd);
+  printf("%d valid triangles\n", valid);
+  return valid;
 }
 
 int main(int argc, char* argv[]){
@@ -63,5 +89,15 @@ int main(int argc, char* argv[]){
   }
   else if(strcmp(argv[1],"horizontal") == 0 && argc == 3){
     horizontal(argv[2]);
+  }
+  else if(strcmp(argv[1],"user") == 0){
+    user();
+  }
+  else if(strcmp(argv[1],"vertical") == 0){
+    vertical(argv[2]);
+  }
+  else{
+    usage();
+    return 1;
   }
 }
