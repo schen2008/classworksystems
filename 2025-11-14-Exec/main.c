@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-int main(){
-  
+int main(int argc, char* argv[]){
+  execvp("/bin", argv);
   return 0;
 }
